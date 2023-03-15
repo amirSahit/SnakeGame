@@ -1,4 +1,3 @@
-import { containerStyling } from "./main";
 import { coordToId } from "./utils";
 
 //create a function to create board
@@ -7,6 +6,16 @@ export function createBoard(
   numCols: number,
   container: HTMLDivElement
 ) {
+  const containerStyling = [
+    "h-[420px]",
+    "aspect-square",
+    "grid",
+    "grid-cols-21",
+    "grid-rows-21",
+    "border-4",
+    "border-green-400",
+  ];
+
   // add display grid, cols and rows to the container
   container.classList.add(...containerStyling);
 

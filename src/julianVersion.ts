@@ -42,3 +42,35 @@ function createBoard(
   }
 }
 createBoard(ROWS, COLS, divEl);
+
+function gameLoop(currentTime: number) {
+  console.log(currentTime);
+}
+window.requestAnimationFrame(gameLoop);
+
+function gameLoop1() {
+  window.requestAnimationFrame(gameLoop);
+} //it is called recursivness in the function we call the function
+window.requestAnimationFrame(gameLoop1);
+
+//simple recursion function
+let time = 0;
+function foo() {
+  console.log(time);
+  if (time === 10) {
+    return;
+  }
+  time++;
+  foo();
+}
+
+foo();
+
+//in the init()
+function gameLoop2() {
+  setTimeout(() => {
+    console.log("running");
+    window.requestAnimationFrame(gameLoop2);
+  }, 1000);
+} //it is called recursivness in the function we call the function
+window.requestAnimationFrame(gameLoop2);
