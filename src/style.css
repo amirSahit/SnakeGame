@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+}
+@layer components {
+  .tail-snake {
+    padding: 1.5rem;
+    --tw-bg-opacity: 1;
+    background-color: rgb(134 239 172 / var(--tw-bg-opacity));
+    border-radius: 100% 15% 15% 100%;
+  }
+  .head-snake {
+    padding: 1.5rem 2rem;
+    --tw-bg-opacity: 1;
+    background-color: rgb(134 239 172 / var(--tw-bg-opacity));
+    border-radius: 15% 100% 100% 15%;
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  .apple-snake {
+    padding: 1.25rem;
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+    border-radius: 25%;
+  }
+  .grid-layout {
+    display: grid;
+    grid-template-columns: repeat(21, 19px);
+    grid-template-rows: repeat(21, 19px);
+    border: 5px solid green;
+    opacity: 0.5;
+  }
+}
+
+@layer utilities {
+}
