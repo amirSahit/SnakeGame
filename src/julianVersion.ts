@@ -6,10 +6,12 @@ console.log("hi");
 console.log(ROWS);
 console.log(COLS);
 
+type Coordinate = [number, number];
+
 const divEl = document.getElementById("grid-container") as HTMLDivElement;
 
-function coordToId([row, col]: [number, number]): `${number}-${number}` {
-  return `${row}-${col}`;
+function coordToId([x, y]: Coordinate): `${number}-${number}` {
+  return `${x}-${y}`;
 }
 
 //create a function to create board
@@ -22,21 +24,21 @@ function createBoard(
   container.style.display = "grid";
   container.style.gridTemplateColumns = `repeat(${numCols}, 1fr)`;
   container.style.gridTemplateRows = `repeat(${numRows}, 1fr)`;
+
+  //add class with height to the actual container
+
   //add a div for each single row and column (hint loop)
-  for (let row = 0; row <= numRows; row++) {
-    for (let col = 0; col <= numCols; col++) {
-      //create gridcell
-      const cells = document.createElement("div");
-      //add the class of "grid-square" to each div
-      cells.classList.add("grid-square");
+  for (let i = 0; i < numCols * numRows; i++) {
+    //create gridcell
+    const gridSquare = document.createElement("div");
+    //add the class of "grid-square" to each div
+    gridSquare.classList.add("grid-square");
 
-      //add a unique id to each single div Element (hint firstElement: "0-0" secondChild: "0-1")
-      const Id = coordToId([row, col]);
-      cells.id = Id;
+    //add a unique id to each single div Element (hint firstElement: "0-0" secondChild: "0-1")
+    gridSquare.id = coordToId([Math.floor(i / numCols), i % numRows]);
 
-      //append the divs to the container
-      container.appendChild(cells);
-    }
+    //append the divs to the container
+    container.appendChild(gridSquare);
   }
 }
 createBoard(ROWS, COLS, divEl);
