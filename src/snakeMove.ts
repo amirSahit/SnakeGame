@@ -1,3 +1,6 @@
+import { Direction } from "./type";
+import { coordToId, idToCoord } from "./utils";
+
 export function updateSnake(snakeBody: string[], direction: Direction) {
   //input [11-11, 12-11, 13-11]
   //find the head of the snake
