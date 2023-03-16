@@ -7,15 +7,17 @@ export function updateSnake(snakeBody: string[], direction: Direction) {
   //write idToCoord function -- [11,12]
   const snakeHead = idToCoord(snakeBody[0]);
   //update new verticalPosition of snakeHead
-  const snakeHeadX = snakeHead[0] + direction.v;
+  const snakeHeadV = snakeHead[0] + direction.v;
   //update new horizontalPosition of snakeHead
-  const snakeHeadY = snakeHead[1] + direction.h;
+  const snakeHeadH = snakeHead[1] + direction.h;
   //convert the new snake into string with coordToId function
-  const moveSnakeHead = coordToId([snakeHeadX, snakeHeadY]);
+  const moveSnakeHead = coordToId([snakeHeadV, snakeHeadH]);
   //create new snake array with updated head and removed tail
-  snakeBody.unshift(moveSnakeHead);
-  snakeBody.pop();
+
+  const slicedSnake = snakeBody.slice(0, snakeBody.length - 1);
+  //splice mutattion - slice returns a copy
+  return [moveSnakeHead, ...slicedSnake];
   //return updated snake array
-  console.log(snakeBody);
+
   //output [10-11, 11-11, 12-11]
 }

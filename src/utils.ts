@@ -8,3 +8,5 @@ export function idToCoord(id: string): Coordinate {
   const [row, col] = id.split("-");
   return [parseInt(row), parseInt(col)];
 }
+
+//return id.split("-")

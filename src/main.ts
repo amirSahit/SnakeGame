@@ -15,8 +15,21 @@ console.log("hi");
 console.log(ROWS);
 console.log(COLS);
 
-function drawSnake() {
+function drawSnake(snake: string[]) {
   console.log("yaaa I am drawn");
+  //loop through snake array [11-11, 11-12, 11-13]
+  snake.forEach((id) => {
+    const snakeSquare = document.getElementById(id) as HTMLDivElement;
+    snakeSquare.classList.add("snake-square");
+  });
+  //add styling to all snake squares -- loop through snake array and for item ->
+  /* for (let i = 0; i < snake.length; i++) {
+    console.log(snake[i]);
+    let wholeGrit = document.getElementById(`${snake[i]}`);
+    console.log(wholeGrit);
+    wholeGrit?.classList.add("snake-square");
+  } */
+  //quereyselect each git item for snake, add class snake-square
 }
 
 const startButton = document.getElementById(
@@ -44,10 +57,10 @@ function init() {
   function gameLoop() {
     setTimeout(() => {
       //updateSnake & updateApple
-      updateSnake(snake, snakeDirection);
+      const updatedSnake = updateSnake(snake, snakeDirection);
       //drawSnake & drawApple
-      drawSnake();
-
+      drawSnake(snake);
+      snake = updatedSnake;
       window.requestAnimationFrame(gameLoop);
     }, speed);
   } //it is called recursivness in the function we call the function

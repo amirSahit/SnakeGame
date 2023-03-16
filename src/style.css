@@ -38,4 +38,8 @@
 }
 
 @layer utilities {
+  .snake-square {
+    background-color: rgb(119, 241, 119);
+    border: 1px solid green;
+  }
 }
