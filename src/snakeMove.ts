@@ -21,3 +21,24 @@ export function updateSnake(snakeBody: string[], direction: Direction) {
 
   //output [10-11, 11-11, 12-11]
 }
+
+export function drawSnake(snake: string[]) {
+  //2. removing color from old snake
+  const allSnakeSquares = document.querySelectorAll(".snake-square");
+  allSnakeSquares.forEach((snakeBlock) => {
+    snakeBlock.classList.remove("snake-square");
+  });
+  //1. loop through snake array [11-11, 11-12, 11-13]
+  snake.forEach((id) => {
+    const snakeSquare = document.getElementById(id) as HTMLDivElement;
+    snakeSquare.classList.add("snake-square");
+  });
+  //add styling to all snake squares -- loop through snake array and for item ->
+  /* for (let i = 0; i < snake.length; i++) {
+    console.log(snake[i]);
+    let wholeGrit = document.getElementById(`${snake[i]}`);
+    console.log(wholeGrit);
+    wholeGrit?.classList.add("snake-square");
+  } */
+  //quereyselect each git item for snake, add class snake-square
+}

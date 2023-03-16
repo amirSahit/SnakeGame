@@ -9,32 +9,59 @@ import {
 } from "./gameConfig";
 import { createBoard } from "./board";
 import { Direction } from "./type";
-import { updateSnake } from "./snakeMove";
+import { drawSnake, updateSnake } from "./snakeMove";
 
 console.log("hi");
 console.log(ROWS);
 console.log(COLS);
 
-function drawSnake(snake: string[]) {
-  console.log("yaaa I am drawn");
-  //loop through snake array [11-11, 11-12, 11-13]
-  snake.forEach((id) => {
-    const snakeSquare = document.getElementById(id) as HTMLDivElement;
-    snakeSquare.classList.add("snake-square");
-  });
-  //add styling to all snake squares -- loop through snake array and for item ->
-  /* for (let i = 0; i < snake.length; i++) {
-    console.log(snake[i]);
-    let wholeGrit = document.getElementById(`${snake[i]}`);
-    console.log(wholeGrit);
-    wholeGrit?.classList.add("snake-square");
-  } */
-  //quereyselect each git item for snake, add class snake-square
-}
-
 const startButton = document.getElementById(
   "start-button"
 ) as HTMLButtonElement;
+
+//implement Board Controls - activates when arrow keys are pressed
+
+function boardControls(e: KeyboardEvent, snakeDirection: Direction) {
+  console.log(e);
+  //snake direction --
+  //0 is no moving in that direction
+  //+1 for rows is downwards, -1 is upwards
+  //+1 for cols is rightwards, -1 is leftwards
+  /*if (e.key === "ArrowLeft") {
+    snakeDirection.v = 0;
+    snakeDirection.h = -1;
+  }*/
+  switch (e.key) {
+    case "ArrowLeft":
+      if (snakeDirection.v === 0 && snakeDirection.h === 1) {
+        break;
+      }
+      snakeDirection.v = 0;
+      snakeDirection.h = -1;
+      break;
+    case "ArrowUp":
+      if (snakeDirection.v === 1 && snakeDirection.h === 0) {
+        break;
+      }
+      snakeDirection.v = -1;
+      snakeDirection.h = 0;
+      break;
+    case "ArrowRight":
+      if (snakeDirection.v === 0 && snakeDirection.h === -1) {
+        break;
+      }
+      snakeDirection.v = 0;
+      snakeDirection.h = 1;
+      break;
+    case "ArrowDown":
+      if (snakeDirection.v === -1 && snakeDirection.h === 0) {
+        break;
+      }
+      snakeDirection.v = 1;
+      snakeDirection.h = 0;
+      break;
+  }
+}
 
 function init() {
   //setup of the grid
@@ -52,8 +79,12 @@ function init() {
   startButton.classList.add("bg-slate-200");
   startButton.classList.add("text-slate-400");
 
-  //setup game Lopp - doing stuff again and again
+  //vreate Controls
+  document.addEventListener("keydown", (event) => {
+    boardControls(event, snakeDirection);
+  });
 
+  //setup game Lopp - doing stuff again and again
   function gameLoop() {
     setTimeout(() => {
       //updateSnake & updateApple
