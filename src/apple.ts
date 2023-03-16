@@ -10,10 +10,8 @@ export function getRandomApple() {
 //Draw Random Apple
 
 export function drawRandomApple(appleDraw: string) {
-  console.log(appleDraw);
   //get div with AppleCoords id
   const myAppleBlock = document.getElementById(appleDraw) as HTMLDivElement;
-  console.log(myAppleBlock);
   myAppleBlock.classList.add("apple-square");
 
   // add .apple-square class to the div;

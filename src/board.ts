@@ -1,3 +1,4 @@
+import { Direction } from "./type";
 import { coordToId } from "./utils";
 
 //create a function to create board
@@ -40,7 +41,6 @@ export function createBoard(
 export //implement Board Controls - activates when arrow keys are pressed
 
 function boardControls(e: KeyboardEvent, snakeDirection: Direction) {
-  console.log(e);
   //snake direction --
   //0 is no moving in that direction
   //+1 for rows is downwards, -1 is upwards

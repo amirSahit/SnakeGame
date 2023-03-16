@@ -54,8 +54,12 @@ function init() {
       snake = updatedSnake;
       window.requestAnimationFrame(gameLoop);
       const updatedApple = updateApple(snake, apple);
+      if (updatedSnake[0] === apple) {
+        console.log("Snake at apple");
+      }
       apple = updatedApple;
       drawRandomApple(updatedApple);
+      //check if snake ate the apple
     }, speed);
   } //it is called recursivness in the function we call the function
   window.requestAnimationFrame(gameLoop);
