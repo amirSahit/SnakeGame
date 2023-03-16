@@ -5,7 +5,7 @@ export const ROWS = 21;
 export const COLS = 21;
 
 //speed
-export const INITIAL_SPEED = 1000; //speed in ms
+export const INITIAL_SPEED = 300; //speed in ms
 
 //array of coordinates specifying snake
 //first element is always the head of the snake

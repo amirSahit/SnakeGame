@@ -7,9 +7,11 @@ import {
   INITIAL_SPEED,
   ROWS,
 } from "./gameConfig";
-import { createBoard } from "./board";
-import { Direction } from "./type";
+import { boardControls, createBoard } from "./board";
+import { Coordinate, Direction } from "./type";
 import { drawSnake, updateSnake } from "./snakeMove";
+import { coordToId, idToCoord, randomCoordinate } from "./utils";
+import { drawRandomApple, getRandomApple, updateApple } from "./apple";
 
 console.log("hi");
 console.log(ROWS);
@@ -18,50 +20,6 @@ console.log(COLS);
 const startButton = document.getElementById(
   "start-button"
 ) as HTMLButtonElement;
-
-//implement Board Controls - activates when arrow keys are pressed
-
-function boardControls(e: KeyboardEvent, snakeDirection: Direction) {
-  console.log(e);
-  //snake direction --
-  //0 is no moving in that direction
-  //+1 for rows is downwards, -1 is upwards
-  //+1 for cols is rightwards, -1 is leftwards
-  /*if (e.key === "ArrowLeft") {
-    snakeDirection.v = 0;
-    snakeDirection.h = -1;
-  }*/
-  switch (e.key) {
-    case "ArrowLeft":
-      if (snakeDirection.v === 0 && snakeDirection.h === 1) {
-        break;
-      }
-      snakeDirection.v = 0;
-      snakeDirection.h = -1;
-      break;
-    case "ArrowUp":
-      if (snakeDirection.v === 1 && snakeDirection.h === 0) {
-        break;
-      }
-      snakeDirection.v = -1;
-      snakeDirection.h = 0;
-      break;
-    case "ArrowRight":
-      if (snakeDirection.v === 0 && snakeDirection.h === -1) {
-        break;
-      }
-      snakeDirection.v = 0;
-      snakeDirection.h = 1;
-      break;
-    case "ArrowDown":
-      if (snakeDirection.v === -1 && snakeDirection.h === 0) {
-        break;
-      }
-      snakeDirection.v = 1;
-      snakeDirection.h = 0;
-      break;
-  }
-}
 
 function init() {
   //setup of the grid
@@ -79,6 +37,8 @@ function init() {
   startButton.classList.add("bg-slate-200");
   startButton.classList.add("text-slate-400");
 
+  let apple: string = getRandomApple();
+  drawRandomApple(apple);
   //vreate Controls
   document.addEventListener("keydown", (event) => {
     boardControls(event, snakeDirection);
@@ -93,6 +53,9 @@ function init() {
       drawSnake(snake);
       snake = updatedSnake;
       window.requestAnimationFrame(gameLoop);
+      const updatedApple = updateApple(snake, apple);
+      apple = updatedApple;
+      drawRandomApple(updatedApple);
     }, speed);
   } //it is called recursivness in the function we call the function
   window.requestAnimationFrame(gameLoop);
